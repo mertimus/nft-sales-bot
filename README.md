@@ -21,13 +21,13 @@ For example:
 
 ```
   const runSalesBot = async () => {
-    mostRecentSignature = await solanaConnection.getSignaturesForAddress(projectPubKey, { limit: 1 });
-    options = { until: mostRecentSignature[0].signature }
+    const mostRecentSignature = await solanaConnection.getSignaturesForAddress(projectPubKey, { limit: 1 });
+    const options = { until: mostRecentSignature[0].signature }
  
     // ... more stuff
     
     while(true) {
-      signatures = await solanaConnection.getSignaturesForAddress(projectPubKey, options);
+      const signatures = await solanaConnection.getSignaturesForAddress(projectPubKey, options);
       // ... rest of the code
     }
 ```
