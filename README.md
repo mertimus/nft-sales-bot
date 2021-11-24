@@ -7,3 +7,29 @@ The code here isn't great and is primarily meant for illustrating concepts. Plea
 Once you've got a project address and a Discord webhook URL, simply run:
 
 `PROJECT_ADDRESS=insert-address DISCORD_URL=insert-webhook node sales_bot.js`
+
+# Caveats
+The way the bot is currently set up, it fetches the last 1000 signatures by default. This is on purpose - as I like backfilling historic sales when I add a bot to Discord.
+
+If you do NOT want to do this, i.e., if you want to ONLY trigger the bot for NEW sales, you will need to modify the code.
+
+There are a few ways to do this.
+
+You can simply call `getSignaturesForAddress` before booting up the bot to get the most recent transaction and then pass this signature to the `getSignaturesForAddress` in the `until` option. 
+
+For example: 
+
+```
+  const runSalesBot = async () => {
+    mostRecentSignature = await solanaConnection.getSignaturesForAddress(projectPubKey, { limit: 1 });
+    options = { until: mostRecentSignature[0].signature }
+ 
+    // ... more stuff
+    
+    while(true) {
+      signatures = await solanaConnection.getSignaturesForAddress(projectPubKey, options);
+      // ... rest of the code
+    }
+```
+
+Alternatively, you can set a new Date during bootup and make sure that new sales occured after this date.
