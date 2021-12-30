@@ -33,3 +33,6 @@ For example:
 ```
 
 Alternatively, you can set a new Date during bootup and make sure that new sales occured after this date.
+
+# Issues
+Sometimes there are problems with the Metaplex API, if this happens, please use the Magic Eden API for getting the metadata (I go over this in the Medium post), i.e., `https://api-mainnet.magiceden.io/rpc/getNFTByMintAddress/{paste-mint-address-here`
