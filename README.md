@@ -27,7 +27,7 @@ For example:
     // ... more stuff
     
     while(true) {
-      const signatures = await solanaConnection.getSignaturesForAddress(projectPubKey, options);
+      let signatures = await solanaConnection.getSignaturesForAddress(projectPubKey, options);
       // ... rest of the code
     }
 ```
